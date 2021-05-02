@@ -4,9 +4,10 @@
 ## Assumption
 
 Name of category is unqiue.
+
 Name of sub-category is unique.
 
-####Docker　
+## Docker　
 
 `docker pull bugbug0102/bugbug0102:inventory-demo-0.0.1`
 
