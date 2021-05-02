@@ -1,4 +1,4 @@
-# Invetory Demo
+# Inventory Demo
 
 
 ## Assumption
