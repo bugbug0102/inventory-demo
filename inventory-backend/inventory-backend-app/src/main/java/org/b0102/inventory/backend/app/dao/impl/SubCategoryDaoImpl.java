@@ -52,16 +52,6 @@ class SubCategoryDaoImpl implements SubCategoryDao
     }
 
     @Override
-    public boolean existsByName(final String name)
-    {
-        final CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        final CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-        final Root<SubCategoryBean> r = cq.from(SubCategoryBean.class);
-        cq.select(cb.count(r)).where(cb.equal(r.get("name"), name));
-        return entityManager.createQuery(cq).getSingleResult().intValue() > 0;
-    }
-
-    @Override
     public boolean existsByNameAndCategoryName(final String name, final String categoryName)
     {
         final CriteriaBuilder cb = entityManager.getCriteriaBuilder();

@@ -1,0 +1,27 @@
+<h3>Inventory (Enquiry)</h3>
+<table>
+    <thead>
+        <tr style="text-align:left;">
+            <th></th>
+            <th style="width:100px;">Name</th>
+            <th style="width:100px">Category</th>
+            <th style="width:100px">Sub-Category</th>
+            <th style="width:100px" class="number">Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i of inventoryForEnquiries">
+            <td><a [routerLink]="['/inventory/modify', i.inventoryId]" >(Modify)</a></td>
+            <td>{{i.name}}</td>
+            <td>{{i.categoryName}}</td>
+            <td>{{i.subCategoryName}}</td>
+            <td class="number">{{i.quantity}}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<div class="card-container">
+    <button type="button" [routerLink]="'/inventory/add'">Add</button>
+
+</div>

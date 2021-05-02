@@ -11,5 +11,4 @@ public interface CategoryDao
     List<CategoryBean> findAll();
     Optional<CategoryBean> getByName(final String name);
     void add(final CategoryBean category);
-    boolean existsByName(final String name);
 }

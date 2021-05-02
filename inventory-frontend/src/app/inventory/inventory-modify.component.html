@@ -1,0 +1,51 @@
+<h3 *ngIf="mode=='add'">Inventory (Add)</h3>
+<h3 *ngIf="mode=='update'">Inventory (Modify)</h3>
+
+<form #form>
+
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" name="name" [(ngModel)]="name" [readonly]="mode=='update'"></td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td>
+                <fieldset [disabled]="mode=='update'">
+                    <select [(ngModel)]="categoryName" name="categoryName" >
+                        <option *ngFor="let c of categoryForEnquiries" [value]="c.name">{{c.name}}</option>
+                    </select>
+                </fieldset>
+
+            </td>
+        </tr>
+        <tr>
+            <td>Sub-Category</td>
+            <td>
+                <fieldset [disabled]="mode=='update'">
+                    <select [(ngModel)]="subCategoryName" name="subCategoryName">
+                        <option *ngFor="let sc of subCategoryForEnquiries" [value]="sc.name">{{sc.name}}</option>
+                    </select>
+                </fieldset>
+
+            </td>
+        </tr>        
+        <tr>
+            <td>Quantity</td>
+            <td><input type="text" [(ngModel)]="quantity" name="quantity"></td>
+        </tr>            
+
+    </table>
+
+    <div *ngIf="error!=null">
+        <span *ngIf="error=='invalid.input'" style="color: red;">Invalid Input</span>
+        <span *ngIf="error=='invalid.category.and.sub.category'" style="color: red;">Invalid Catgory and Sub-Category</span>
+    </div>
+
+    <div>
+        <button type="button" (click)="onSubmit()">Submit</button>
+    </div>
+
+
+    
+</form>

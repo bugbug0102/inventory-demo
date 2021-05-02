@@ -3,7 +3,6 @@ package org.b0102.inventory.backend.app.dao.impl;
 
 import org.b0102.inventory.backend.app.dao.CategoryDao;
 import org.b0102.inventory.backend.app.entity.CategoryBean;
-import org.b0102.inventory.backend.app.entity.SubCategoryBean;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -43,16 +42,6 @@ class CategoryDaoImpl implements CategoryDao
     public void add(final CategoryBean category)
     {
         entityManager.persist(category);
-    }
-
-    @Override
-    public boolean existsByName(final String name)
-    {
-        final CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        final CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-        final Root<CategoryBean> r = cq.from(CategoryBean.class);
-        cq.select(cb.count(r)).where(cb.equal(r.get("name"), name));
-        return entityManager.createQuery(cq).getSingleResult().intValue() > 0;
     }
 
     @Override

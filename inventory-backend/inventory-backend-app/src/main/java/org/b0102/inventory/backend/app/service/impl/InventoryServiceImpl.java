@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.annotation.PostConstruct;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -92,15 +93,20 @@ class InventoryServiceImpl implements InventoryService
     {
         if(validateCategoryByCategoryNameAndSubCategoryName(inventoryAdd.getCategoryName(), inventoryAdd.getSubCategoryName()))
         {
-            final Date now = new Date();
-            final InventoryBean i = new InventoryBean();
-            i.setName(inventoryAdd.getName());
-            i.setSubCategory(subCategoryDao.getByName(inventoryAdd.getSubCategoryName()).get());
-            i.setQuantity(inventoryAdd.getQuantity());
-            i.setUpdatedDate(now);
-            i.setCreatedDate(now);
-            inventoryDao.add(i);
-
+            if(inventoryAdd.getQuantity().compareTo(BigInteger.ZERO) > 0)
+            {
+                final Date now = new Date();
+                final InventoryBean i = new InventoryBean();
+                i.setName(inventoryAdd.getName());
+                i.setSubCategory(subCategoryDao.getByName(inventoryAdd.getSubCategoryName()).get());
+                i.setQuantity(inventoryAdd.getQuantity());
+                i.setUpdatedDate(now);
+                i.setCreatedDate(now);
+                inventoryDao.add(i);
+            }else
+            {
+                throw new InventoryOperationException("invalid.quantity");
+            }
         }else
         {
             throw new InventoryOperationException("invalid.category.and.sub.category");

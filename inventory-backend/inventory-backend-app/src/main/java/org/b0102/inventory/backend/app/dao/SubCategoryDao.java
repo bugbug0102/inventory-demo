@@ -10,7 +10,6 @@ public interface SubCategoryDao
     List<SubCategoryBean> findAll();
     Optional<SubCategoryBean> getByName(final String name);
     void add(final SubCategoryBean subCategory);
-    boolean existsByName(final String name);
     boolean existsByNameAndCategoryName(final String name, final String categoryName);
 
 }
